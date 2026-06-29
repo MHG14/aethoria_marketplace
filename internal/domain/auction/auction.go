@@ -2,8 +2,6 @@ package auction
 
 import (
 	"time"
-
-	"github.com/MHG14/aethoria_markteplace/pkg"
 )
 
 const extendWindow = 5 * time.Minute
@@ -31,13 +29,13 @@ func (a *Auction) MinNextBid() int64 {
 
 func (a *Auction) PlaceBid(guildID int64, amount int64, now time.Time) error {
 	if a.Status != Active {
-		return pkg.ErrAuctionNotActive
+		return ErrAuctionNotActive
 	}
 	if a.SellerID == guildID {
-		return pkg.ErrSellerCannotBid
+		return ErrSellerCannotBid
 	}
 	if amount < a.MinNextBid() {
-		return pkg.ErrBidTooLow
+		return ErrBidTooLow
 	}
 	a.HighestBid = amount
 	a.HighestBidderID = &guildID

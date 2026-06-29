@@ -11,7 +11,7 @@ const (
 	RefTrade   RefType = "trade"
 )
 
-type WalletTransaction struct {
+type Transaction struct {
 	ID        int64
 	GuildID   int64
 	Type      TxType
